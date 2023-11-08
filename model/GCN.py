@@ -39,7 +39,7 @@ class GCN(torch.nn.Module):
     def forward(self, input, adj_t, from_text = False):
         # if using an encoder to conver raw text to embeddings, set from_text to true.
         if from_text:
-            embeddings = self.encoder(input)
+            embeddings = self.encoder.encode(input)
             x = embeddings
         else:
             x = input

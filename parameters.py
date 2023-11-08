@@ -2,6 +2,10 @@
 DATA_PATH = 'data/'
 USE_TEXT = True
 
+# Encoder parameters
+USE_LM_ENCODER = True
+ENCODER_NAME = "BAAI/bge-large-en-v1.5"
+
 # Model parameters
 INPUT_DIM = 768
 HIDDEN_DIM = 256

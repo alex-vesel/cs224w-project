@@ -11,6 +11,10 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 dataset = ObgnProductsWrapper(split='train', text=USE_TEXT)
 dataset.to(device)
 
+# load LM encoder
+if USE_LM_ENCODER:
+    encoder = LMEncoder(ENCODER_NAME)
+
 # load model
 model = GCN(
     input_dim=INPUT_DIM,
@@ -18,6 +22,7 @@ model = GCN(
     output_dim=OUTPUT_DIM,
     num_layers=NUM_LAYERS,
     dropout=DROPOUT,
+    encoder=encoder
 )
 
 # load optimizer
