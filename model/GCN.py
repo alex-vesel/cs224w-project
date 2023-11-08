@@ -5,7 +5,7 @@ from torch_geometric.nn import GCNConv
 
 class GCN(torch.nn.Module):
     def __init__(self, input_dim, hidden_dim, output_dim, num_layers,
-                 dropout, encoder = None, return_embeds=False):
+                 dropout, encoder=None, return_embeds=False):
         super(GCN, self).__init__()
 
         # encoder to generate embeddings from raw text
