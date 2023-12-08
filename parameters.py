@@ -1,13 +1,15 @@
 # Data parameters
 DATA_PATH = 'data/'
-USE_TEXT = True
+USE_TEXT = False
+SUBSET_SIZE = 100 # set to None for full dataset
 
 # Encoder parameters
-USE_LM_ENCODER = True
-ENCODER_NAME = "BAAI/bge-large-en-v1.5"
+# ENCODER_NAME = "BAAI/bge-large-en-v1.5"
+ENCODER_NAME = "BAAI/bge-small-en"
 
 # Model parameters
-INPUT_DIM = 768
+BOW_DIM = 100
+INPUT_DIM = 384
 HIDDEN_DIM = 256
 NUM_LAYERS = 3
 OUTPUT_DIM = 47

@@ -5,7 +5,7 @@ from torch_geometric.nn import GCNConv
 
 class GCN(torch.nn.Module):
     def __init__(self, input_dim, hidden_dim, output_dim, num_layers,
-                 dropout, encoder=None, return_embeds=False):
+                 dropout, encoder=None, return_logits=False):
         super(GCN, self).__init__()
 
         # encoder to generate embeddings from raw text
@@ -28,7 +28,7 @@ class GCN(torch.nn.Module):
         self.dropout = dropout
 
         # Skip classification layer and return node embeddings
-        self.return_embeds = return_embeds
+        self.return_logits = return_logits
 
     def reset_parameters(self):
         for conv in self.convs:
@@ -36,13 +36,10 @@ class GCN(torch.nn.Module):
         for bn in self.bns:
             bn.reset_parameters()
 
-    def forward(self, input, adj_t, from_text = False):
+    def forward(self, input, adj_t):
         # if using an encoder to conver raw text to embeddings, set from_text to true.
-        if from_text:
-            embeddings = self.encoder.encode(input)
-            x = embeddings
-        else:
-            x = input
+        x = self.encoder.encode(input)
+        x = torch.tensor(x)
 
         for i in range(len(self.convs) - 1):
           x = self.convs[i](x, adj_t)
@@ -50,7 +47,7 @@ class GCN(torch.nn.Module):
           x = F.relu(x)
           x = F.dropout(x, p=self.dropout)
         x = self.convs[-1](x, adj_t)
-        if self.return_embeds:
+        if self.return_logits:
           return x
         out = self.softmax(x).float()
 

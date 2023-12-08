@@ -1,4 +1,7 @@
 from sentence_transformers import SentenceTransformer
+from typing import List, Union
+from numpy import ndarray
+from torch import Tensor
 
 class LMEncoder():
     def __init__(self, model_name):
