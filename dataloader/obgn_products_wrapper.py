@@ -14,6 +14,7 @@ class ObgnProductsWrapper():
         self.data_path = os.path.join(DATA_PATH, "ogbn_products")
 
         # load dataset
+        import IPython; IPython.embed(); exit(0)
         dataset = PygNodePropPredDataset(name='ogbn-products', root=self.data_path, transform=T.ToSparseTensor())
         if text:
             # load text
@@ -28,7 +29,7 @@ class ObgnProductsWrapper():
 
     def to(self, device):
         self.graph = self.graph.to(device)
-        self.split_idx = self.split_idx.to(device
+        self.split_idx = self.split_idx.to(device)
     
 
 if __name__ == "__main__":
