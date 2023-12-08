@@ -26,6 +26,7 @@ class ObgnProductsWrapper():
             dataset.data.x = dataset.data.x[subset_indices]
             dataset.data.y = dataset.data.y[subset_indices]
             mask = (dataset.data.edge_index[0] < subset_size) & (dataset.data.edge_index[1] < subset_size)
+            # mask = torch.zeros_like(mask)
             dataset.data.edge_index = dataset.data.edge_index[:, mask]
             dataset.data.num_nodes = subset_size
 

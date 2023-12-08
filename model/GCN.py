@@ -37,9 +37,8 @@ class GCN(torch.nn.Module):
             bn.reset_parameters()
 
     def forward(self, input, adj_t):
-        # if using an encoder to conver raw text to embeddings, set from_text to true.
+        # input = torch.zeros_like(input)
         x = self.encoder.encode(input)
-        x = torch.tensor(x)
 
         for i in range(len(self.convs) - 1):
           x = self.convs[i](x, adj_t)

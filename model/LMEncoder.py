@@ -24,5 +24,6 @@ class LMEncoder():
             convert_to_tensor= convert_to_tensor,
             normalize_embeddings= normalize_embeddings
         )
+        output = torch.tensor(output)
 
         return output

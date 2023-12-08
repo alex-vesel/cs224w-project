@@ -17,6 +17,7 @@ if USE_TEXT:
     encoder = LMEncoder(ENCODER_NAME)
 else:
     encoder = LinearEncoder(BOW_DIM, INPUT_DIM)
+encoder.to(device)
 
 # load model
 model = GCN(
@@ -28,6 +29,7 @@ model = GCN(
     encoder=encoder,
     return_logits=True
 )
+model.to(device)
 
 # load optimizer
 optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
