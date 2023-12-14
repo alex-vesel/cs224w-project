@@ -14,7 +14,7 @@ node_text = pd.read_csv(os.path.join(DATA_PATH, "ogbn_products", "raw", "node-fe
 model = SentenceTransformer(ENCODER_NAME)
 model.to(device)
 
-embeddings = model.encode(node_text[:, 0], show_progress_bar=True)
+embeddings = model.encode(node_text[:, 0], batch_size=64, show_progress_bar=True)
 
 # save embeddings as csv.gz
 encoder_name_string = ENCODER_NAME.replace("/", "_")
