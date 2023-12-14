@@ -1,14 +1,13 @@
 # Data parameters
-DATA_PATH = 'data/'
-USE_TEXT = False
-SUBSET_SIZE = 800000 # set to None for full dataset
+DATA_PATH = 'data/'     # path to ogbn_products dataset parent folder
+USE_TEXT = True         # flag of whether to use text embeddings or BoW representation
+SUBSET_SIZE = 800000    # number of nodes to be used, set to None for full dataset
 
 # Encoder parameters
-# ENCODER_NAME = "BAAI/bge-base-en-v1.5"
-ENCODER_NAME = "BAAI/bge-small-en"
+ENCODER_NAME = "BAAI/bge-base-en-v1.5"  # encoder name
 
 # Model parameters
-MODEL = 'graphsage'
+MODEL = 'gcn'           # set model choice {gcn, gat, graphsage}
 if USE_TEXT:
     if ENCODER_NAME == "BAAI/bge-base-en-v1.5":
         INPUT_DIM = 768
@@ -16,15 +15,14 @@ if USE_TEXT:
         INPUT_DIM = 384
 else:
     INPUT_DIM = 100
-HIDDEN_DIM = 256
-NUM_LAYERS = 3
-OUTPUT_DIM = 47
-DROPOUT = 0.
+HIDDEN_DIM = 256        # hidden dimension of network
+NUM_LAYERS = 3          # number of message passing layers
+OUTPUT_DIM = 47         # output dimension (47 for ogbn-products)
+DROPOUT = 0.            # dropout percent
 
 # Training parameters
-EPOCHS = 100
-BATCH_SIZE = 32
-LEARNING_RATE = 10e-4
-TRAIN_SIZE = 0.7
-VAL_SIZE = 0.1
-EVAL_EPOCHS = 10
+EPOCHS = 100            # number of training epochs
+LEARNING_RATE = 10e-4   # learning rate
+TRAIN_SIZE = 0.7        # proportion of dataset that is training
+VAL_SIZE = 0.1          # proportion of dataset that is validation
+EVAL_EPOCHS = 10        # proportion of dataset that is test

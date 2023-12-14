@@ -4,6 +4,7 @@ import torch.nn.functional as F
 from torch_geometric.nn import GCNConv
 from torch_geometric.nn.models import GraphSAGE as pygGraphSAGE
 
+# this class implements a GraphSAGE by wrapping PyG's implementation
 class GraphSAGE(torch.nn.Module):
     def __init__(self, input_dim, hidden_dim, output_dim, num_layers,
                  dropout, encoder=None, return_logits=False):
@@ -11,7 +12,7 @@ class GraphSAGE(torch.nn.Module):
         
         self.encoder = encoder
 
-        # Create GAT
+        # Create GraphSAGE
         self.graph_sage = pygGraphSAGE(
             in_channels=input_dim, 
             hidden_channels=hidden_dim,

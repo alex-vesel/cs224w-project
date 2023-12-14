@@ -1,5 +1,6 @@
 import torch
 
+# This class defines a simple linear encoder 
 class LinearEncoder(torch.nn.Module):
     def __init__(self, input_dim, output_dim):
         super(LinearEncoder, self).__init__()

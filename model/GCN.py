@@ -3,6 +3,7 @@ import pandas as pd
 import torch.nn.functional as F
 from torch_geometric.nn import GCNConv
 
+# this class implements a Graph Convolutional Network
 class GCN(torch.nn.Module):
     def __init__(self, input_dim, hidden_dim, output_dim, num_layers,
                  dropout, encoder=None, return_logits=False):
